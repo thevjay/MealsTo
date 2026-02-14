@@ -22,9 +22,9 @@ interface Props {
 export default function RestaurantInfoCard({ restaurant }:Props) {
   const { 
     name = 'Restaurant', 
-    icon, 
+    icon='https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/restaurant-71.png', 
     photos = [
-        'https://www.foodiesfeed.com/hi/free-food-photo/golden-toast-stacked-on-neutral-background'
+        'https://images.unsplash.com/photo-1555396273-367ea4eb4db5'
     ], 
     address = '100 some random street', 
     isOpenNow = true, 
@@ -36,11 +36,11 @@ export default function RestaurantInfoCard({ restaurant }:Props) {
 
 
   return (
-    <Card elevation={5} className="bg-white">
+    <Card elevation={5} className="bg-white mb-5">
         <Card.Cover 
             key={name} 
             source={{ uri: photos[0] }}
-            className="p-1 bg-white"
+            className="p-1 bg-red-700"
         />
         <Text style={{ fontFamily: "Lato_700Bold" }} className="p-2">{name}</Text>
         <View className="flex-row items-center">
