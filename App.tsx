@@ -1,12 +1,35 @@
+import * as React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import RestaurantsScreen from './src/features/restaurants/screens/restaurant.screen';
+
+import {
+  useFonts as useOswald,
+  Oswald_400Regular
+} from '@expo-google-fonts/oswald'
+import {
+  useFonts as useLato,
+  Lato_400Regular,
+  Lato_700Bold
+} from '@expo-google-fonts/lato'
 
 export default function App() {
+
+  let [oswaldLoaded] = useOswald({
+    Oswald_400Regular,
+  })
+  let [latoLoaded] = useLato({
+    Lato_700Bold
+  })
+
+  if(!oswaldLoaded || !latoLoaded) {
+    return null;
+  }
+
   return (
-    <View className='flex-1 justify-center'>
-      <Text className='text-red-400'>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <>
+      <RestaurantsScreen/>
+      <StatusBar style='auto'/>
+    </>
   );
 }
 
