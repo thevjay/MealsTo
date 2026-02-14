@@ -3,6 +3,7 @@ import React from "react";
 import { Card } from "react-native-paper";
 import { SvgXml } from 'react-native-svg'
 import star from '../../../../assets/star'
+import open from '../../../../assets/open'
 
 interface RestauantsDetails {
     name: string;
@@ -42,12 +43,18 @@ export default function RestaurantInfoCard({ restaurant }:Props) {
             className="p-1 bg-white"
         />
         <Text style={{ fontFamily: "Lato_700Bold" }} className="p-2">{name}</Text>
-        <View className="flex-row p-1">
-            {ratingArray.map((_,index)=>(
-                <SvgXml
-                    key={`star-${index}`}  
-                    xml={star} width={20} height={20}/>
-            ))}
+        <View className="flex-row items-center">
+            <View className="flex-row p-1">
+                {ratingArray.map((_,index)=>(
+                    <SvgXml
+                        key={`star-${index}`}  
+                        xml={star} width={20} height={20}/>
+                ))}
+            </View>
+            <View className="flex-1 flex-row justify-end">
+                {isClosedTemporarily && <Text className="text-red-700 font-bold">CLOSED TEMPORARILY</Text>}
+                {isOpenNow && <SvgXml xml={open} width={20} height={20}/>}
+            </View>
         </View>
         <Text className='text-sm p-1'>{address}</Text>
     </Card>
