@@ -17,7 +17,7 @@ export default function RestaurantsScreen() {
             onChangeText={setSearchQuery}
            />
         </View>
-        <View className=" flex-1 p-5 bg-green-600">
+        <View className=" flex-1 p-5 bg-white">
           <RestaurantInfoCard
             restaurant={{
                 name:'Some Restaurant', 
