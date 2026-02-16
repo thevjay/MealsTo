@@ -11,16 +11,15 @@ export const restaurantsRequest = (location = '37.7749295,-122.4194155'):Promise
 
 export const restaurantsTranform = (results: any[]) => {
   const mappedResults = results.map((restaurant: any) => {
-    console.log("\n IMAGES",mockImages)
     const photos = restaurant.photos?.map(() => {
       return mockImages[
         Math.floor(Math.random() * mockImages.length)
       ];
     }) ?? [];
-    console.log("\n\n AFTER_IMAGES",photos)
 
     return {
       ...restaurant,
+      address: restaurant.vicinity,
       photos,
       isOpenNow: restaurant.opening_hours?.open_now ?? true,
       isClosedTemporarily:

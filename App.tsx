@@ -18,6 +18,7 @@ import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
+import { LocationContextProvider } from "./src/services/location/location.context";
 
 const Tab = createBottomTabNavigator();
 
@@ -46,6 +47,9 @@ export default function App() {
 
   return (
     <>
+      <LocationContextProvider>
+
+
       <RestaurantsContextProvider>
         <NavigationContainer>
           <Tab.Navigator
@@ -66,7 +70,7 @@ export default function App() {
               tabBarActiveTintColor: "tomato",
               tabBarInactiveTintColor: "gray",
             })}
-          >
+            >
             <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
             <Tab.Screen name="Map" component={Map} />
             <Tab.Screen name="Settings" component={Settings} />
@@ -74,6 +78,7 @@ export default function App() {
         </NavigationContainer>
         <StatusBar style="auto" />
       </RestaurantsContextProvider>
+      </LocationContextProvider>
     </>
   );
 }

@@ -4,20 +4,16 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, Searchbar, MD2Colors } from "react-native-paper";
 import RestaurantInfoCard from "../components/restaurant-info-card.comp";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
+import Search from "../components/search.component";
 
 export default function RestaurantsScreen() {
-  const [searchQuery, setSearchQuery] = useState("");
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   console.log("\n\nISLOADING", isLoading);
   return (
     <>
       <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
         <View className="p-8">
-          <Searchbar
-            placeholder="Search.."
-            value={searchQuery}
-            onChangeText={setSearchQuery}
-          />
+          <Search/>
         </View>
         <View className=" flex-1 p-1 bg-white">
           <FlatList
