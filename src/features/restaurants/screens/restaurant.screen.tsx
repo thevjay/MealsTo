@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, FlatList } from "react-native";
+import { StyleSheet, Text, View, FlatList, Pressable, TouchableOpacity } from "react-native";
 import React, { useContext, useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, Searchbar, MD2Colors } from "react-native-paper";
@@ -6,7 +6,7 @@ import RestaurantInfoCard from "../components/restaurant-info-card.comp";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import Search from "../components/search.component";
 
-export default function RestaurantsScreen() {
+export default function RestaurantsScreen({ navigation }:any) {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
   console.log("\n\nISLOADING", isLoading);
   return (
@@ -18,7 +18,12 @@ export default function RestaurantsScreen() {
         <View className=" flex-1 p-1 bg-white">
           <FlatList
             data={restaurants}
-            renderItem={({ item }) => <RestaurantInfoCard restaurant={item} />}
+            renderItem={({ item }) =>{
+              return(
+                <TouchableOpacity onPress={() => navigation.navigate("RestaurantDetail",{restaurant: item,})}>
+                  <RestaurantInfoCard restaurant={item} />
+                </TouchableOpacity>
+            )}}
             keyExtractor={(item) => item.name}
             contentContainerStyle={{ padding: 8 }}
           />
