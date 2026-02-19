@@ -4,6 +4,7 @@ import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 import star from "../../../../assets/star";
 import open from "../../../../assets/open";
+import Favourite from "../../../components/favourites/favourite.component";
 
 interface RestauantsDetails {
   name: string;
@@ -34,6 +35,7 @@ export default function RestaurantInfoCard({ restaurant }: Props) {
 
   return (
     <Card elevation={5} className="bg-white mb-5">
+      <Favourite restaurant={restaurant}/>
       <Card.Cover
         key={name}
         source={{ uri: photos[0] }}

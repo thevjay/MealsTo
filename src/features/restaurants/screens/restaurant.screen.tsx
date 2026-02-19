@@ -5,16 +5,20 @@ import { ActivityIndicator, Searchbar, MD2Colors } from "react-native-paper";
 import RestaurantInfoCard from "../components/restaurant-info-card.comp";
 import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 import Search from "../components/search.component";
+import FavouritesBar from "../../../components/favourites/favourites-bar.component";
+import { FavouritesContext } from "../../../services/favourites/favourites.context";
 
 export default function RestaurantsScreen({ navigation }:any) {
   const { isLoading, error, restaurants } = useContext(RestaurantsContext);
-  console.log("\n\nISLOADING", isLoading);
+  const {favourites}:any = useContext(FavouritesContext)
+  const [isToggled, setIsToggled] = useState(false)
   return (
     <>
       <SafeAreaView style={{ flex: 1 }} edges={["top"]}>
-        <View className="p-8">
-          <Search/>
+        <View className="p-3">
+          <Search isFavouritesToggled={isToggled} onFavouritesToggled={() => setIsToggled(!isToggled)}/>
         </View>
+        <FavouritesBar favourites={favourites} onNavigate={navigation.navigate}/>
         <View className=" flex-1 p-1 bg-white">
           <FlatList
             data={restaurants}

@@ -7,7 +7,7 @@ import RestaurantDetailScreen from '../../features/restaurants/screens/restauran
 
 const RestaurantStack = createStackNavigator();
 
-export default function restaurantsNavigator() {
+export default function RestaurantsNavigator() {
   return (
     <RestaurantStack.Navigator 
       screenOptions={{
