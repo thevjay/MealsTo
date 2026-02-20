@@ -10,6 +10,7 @@ import React, { useContext, useState } from "react";
 import { AuthenticationContext } from "../../../services/authentication/authentication.context";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ActivityIndicator, Button } from "react-native-paper";
+import LottieView from 'lottie-react-native'
 
 export default function LoginScreen({navigation}:any) {
   const [email, setEmail] = useState("");
@@ -26,6 +27,20 @@ export default function LoginScreen({navigation}:any) {
         }}
         resizeMode="cover"
       >
+        <View className="w-full h-[40%] absolute top-7 p-">
+
+        <LottieView
+          key='animation'
+          autoPlay
+          loop
+          resizeMode='cover'
+          source={require("../../../../assets/Watermelon.json")}
+        />
+        </View>
+        <View>
+
+          <Text>Meals To Go</Text>
+        </View>
         <View className="flex-1 bg-black/50 justify-center items-center">
           <View className="w-[85%] bg-white p-6 rounded-xl">
             <Text className='text-2xl font-bold text-center mb-6'>Login</Text>
