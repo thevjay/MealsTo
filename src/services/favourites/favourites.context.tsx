@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View } from 'react-native'
-import React, { createContext, useEffect, useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { AuthenticationContext } from '../authentication/authentication.context';
 
 export interface Restaurant {
   placeId: string;
@@ -18,13 +19,15 @@ export const FavouritesContext =
 
 
 export default function FavouritesContextProvider({ children}:any) {
-
+    const context = useContext(AuthenticationContext)
+    if(!context) return null
+    const {user} = context 
     const [favourites, setFavourites] = useState<Restaurant[]>([]);
 
     const saveFavourites = async (value:any) => {
       try{
         const jsonValue = JSON.stringify(value);
-        await AsyncStorage.setItem('@favourites',jsonValue)
+        await AsyncStorage.setItem(`@favourites-${user}`,jsonValue)
       }catch(err){
         console.log(err)
       }
@@ -32,7 +35,7 @@ export default function FavouritesContextProvider({ children}:any) {
 
     const loadFavourites = async () => {
       try {
-        const value = await AsyncStorage.getItem('@favourites');
+        const value = await AsyncStorage.getItem(`@favourites-${user }`);
         if(value !== null){
           // value previously store
           setFavourites(JSON.parse(value))
